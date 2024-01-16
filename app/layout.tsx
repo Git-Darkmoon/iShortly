@@ -40,7 +40,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="bg-gradient-to-r from-rose-100 to-teal-100">
+    <html lang="en">
+      <div className="fixed top-0 -z-10 h-full w-full bg-white">
+        <div className="absolute inset-0 -z-9 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-primary-500/35 opacity-50 blur-[80px]"></div>
+      </div>
       <body className={onest.className}>{children}</body>
     </html>
   )

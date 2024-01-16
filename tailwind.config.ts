@@ -10,10 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          "500": "#25BABA",
-          "700": "#21A7A7",
+          "500": "#f7b054",
+          "700": "#ec9b32",
         },
-        darkViolet: "	#3b3054",
+        darkViolet: "#3f3d56",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
