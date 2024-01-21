@@ -1,11 +1,11 @@
 "use client"
 
 import { FormEvent, useRef, useState } from "react"
+import LinksList from "./LinksList"
 
 const FormContainer = () => {
   const [shortUrl, setShortUrl] = useState<String>("")
   const inputRef = useRef<HTMLInputElement>(null)
-  const [isCopied, setIsCopied] = useState(false)
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -28,6 +28,8 @@ const FormContainer = () => {
     form.reset()
   }
 
+  const LinksShortened: any = []
+
   return (
     <>
       <form
@@ -43,18 +45,14 @@ const FormContainer = () => {
             placeholder="Place your link here..."
           />
           <button
+            onClick={() => LinksShortened.push(shortUrl)}
             type="submit"
             className="bg-darkViolet hover:bg-darkViolet/85 text-slate-50 px-5 py-2.5 capitalize rounded-md transition-colors"
           >
             short!
           </button>
         </div>
-        <div className="flex items-center justify-between">
-          <div className="mt-4">{`${window.location.href}api/${shortUrl}`}</div>
-          <button className="bg-primary-500 hover:bg-primary-700 text-slate-50 px-3 py-1.5 capitalize rounded-md transition-colors">
-            {isCopied ? "Copied !" : "Copy"}
-          </button>
-        </div>
+        <LinksList list={LinksShortened} />
       </form>
     </>
   )
