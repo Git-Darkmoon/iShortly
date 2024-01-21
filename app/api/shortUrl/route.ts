@@ -18,7 +18,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     return NextResponse.json(
       {
         message: "Links saved successfully",
-        data: response.rows[0],
+        shortUrlId: shortUrl,
       },
       { status: 200 }
     )

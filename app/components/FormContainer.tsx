@@ -3,8 +3,9 @@
 import { FormEvent, useRef, useState } from "react"
 
 const FormContainer = () => {
-  const [shortUrl, setShortUrl] = useState("...")
+  const [shortUrl, setShortUrl] = useState<String>("")
   const inputRef = useRef<HTMLInputElement>(null)
+  const [isCopied, setIsCopied] = useState(false)
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -21,7 +22,7 @@ const FormContainer = () => {
     })
     const data = await res.json()
     console.log(data)
-    setShortUrl(data.shorturl)
+    setShortUrl(data.shortUrlId)
     // Reset the form
     const form = document.getElementById("myForm") as HTMLFormElement
     form.reset()
@@ -32,7 +33,7 @@ const FormContainer = () => {
       <form
         id="myForm"
         onSubmit={handleSubmit}
-        className="w-full mt-12 max-w-[760px] items-center justify-center text-xl mx-auto px-6 py-4 bg-slate-200 shadow-lg rounded-md"
+        className="flex flex-col gap-y-3 w-full  mt-12 max-w-[760px] justify-center text-xl mx-auto px-6 py-4 bg-slate-200 shadow-lg rounded-md"
       >
         <div className="flex flex-col md:flex-row gap-3">
           <input
@@ -48,7 +49,12 @@ const FormContainer = () => {
             short!
           </button>
         </div>
-        <div className="mt-4">{shortUrl}</div>
+        <div className="flex items-center justify-between">
+          <div className="mt-4">{`${window.location.href}api/${shortUrl}`}</div>
+          <button className="bg-primary-500 hover:bg-primary-700 text-slate-50 px-3 py-1.5 capitalize rounded-md transition-colors">
+            {isCopied ? "Copied !" : "Copy"}
+          </button>
+        </div>
       </form>
     </>
   )
