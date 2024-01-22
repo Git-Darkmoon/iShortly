@@ -1,11 +1,18 @@
 "use client"
 
 import { FormEvent, useRef, useState } from "react"
-import LinksList from "./LinksList"
+import LinkElement from "./LinkElement"
 
 const FormContainer = () => {
-  const [shortUrl, setShortUrl] = useState<String>("")
+  const [elements, setElements] = useState<React.ReactElement[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
+
+  function addElement(shortCode: String) {
+    setElements([
+      ...elements,
+      <LinkElement key={crypto.randomUUID()} shortUrl={shortCode} />,
+    ])
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -21,14 +28,12 @@ const FormContainer = () => {
       body: JSON.stringify({ url }),
     })
     const data = await res.json()
-    console.log(data)
-    setShortUrl(data.shortUrlId)
+    addElement(data.shortUrlId)
+
     // Reset the form
     const form = document.getElementById("myForm") as HTMLFormElement
     form.reset()
   }
-
-  const LinksShortened: any = []
 
   return (
     <>
@@ -45,14 +50,15 @@ const FormContainer = () => {
             placeholder="Place your link here..."
           />
           <button
-            onClick={() => LinksShortened.push(shortUrl)}
             type="submit"
             className="bg-darkViolet hover:bg-darkViolet/85 text-slate-50 px-5 py-2.5 capitalize rounded-md transition-colors"
           >
             short!
           </button>
         </div>
-        <LinksList list={LinksShortened} />
+        <div className="flex flex-col items-center justify-between">
+          {elements}
+        </div>
       </form>
     </>
   )
