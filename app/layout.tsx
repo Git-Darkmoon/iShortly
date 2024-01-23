@@ -1,22 +1,26 @@
 import type { Metadata } from "next"
 import { Onest } from "next/font/google"
 import "./globals.css"
+import { Toaster } from "sonner"
 
 const onest = Onest({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 })
 
 export const metadata: Metadata = {
-  title: "iShortly",
-  description: "Amazing website for shorting your URLs.",
+  title: "iShortly | URL shortening made easy.",
+  description:
+    "Amazing tool for URL shortening, you can beautify a link with just one finger move on your click. What are you waiting to short those awful long links ?",
   icons: {
-    icon: "/scissors_favicon.png",
+    icon: "/pretzel_favicon.png",
   },
   generator: "Next.js",
-  applicationName: "GMAP",
+  applicationName: "iShortly",
   referrer: "origin-when-cross-origin",
-  keywords: ["Next.js", "Shortening URLs", "URL shortening", "URL"],
+  keywords: ["iShortly,Next.js", "Shortening URLs", "URL shortening", "URL"],
   authors: [
     {
       name: "Nicolas Mayorga",
@@ -24,6 +28,22 @@ export const metadata: Metadata = {
     },
   ],
   category: "service",
+  openGraph: {
+    title: "iShortly | URL shortening made easy.",
+    description:
+      "Amazing tool for URL shortening, you can beautify a link with just one finger move on your click. What are you waiting to short those awful long links ?",
+    url: "https://nextjs.org",
+    siteName: "iShortly",
+    images: [
+      {
+        url: "/App_Screenshot.webp",
+        width: 800,
+        height: 400,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 }
 
 export default function RootLayout({
@@ -33,7 +53,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={onest.className}>{children}</body>
+      <body className={onest.className}>
+        {children}
+        <Toaster theme="dark" position="top-right" />
+      </body>
     </html>
   )
 }
