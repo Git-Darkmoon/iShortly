@@ -1,6 +1,5 @@
 "use client"
 
-import React, { Suspense } from "react"
 import Header from "./components/Header"
 import Hero from "./components/Hero"
 
