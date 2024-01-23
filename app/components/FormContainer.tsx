@@ -40,7 +40,7 @@ const FormContainer = () => {
       <form
         id="myForm"
         onSubmit={handleSubmit}
-        className="flex flex-col  w-full mt-6 max-w-[760px] justify-center text-xl mx-auto px-6 py-5 bg-gray-700 shadow-xl rounded-md"
+        className="flex flex-col  w-full mt-6 max-w-[760px] justify-center text-xl mx-auto px-6 py-5 bg-gray-700/60 shadow-xl rounded-md"
       >
         <div className="flex flex-col md:flex-row gap-3">
           <input
