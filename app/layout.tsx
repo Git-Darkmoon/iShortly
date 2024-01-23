@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "iShortly | URL shortening made easy.",
     description:
       "Amazing tool for URL shortening, you can beautify a link with just one finger move on your click. What are you waiting to short those awful long links ?",
-    url: "https://nextjs.org",
+    url: "https://ishortly.vercel.app/",
     siteName: "iShortly",
     images: [
       {
