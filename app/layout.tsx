@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "iShortly",
     images: [
       {
-        url: "/App_Screenshot.webp",
+        url: "https://ishortly.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F3D_Foodies.1b3c0f98.webp&w=1920&q=75",
         width: 800,
         height: 400,
       },
