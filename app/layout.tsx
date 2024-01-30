@@ -3,6 +3,9 @@ import { Onest } from "next/font/google"
 import "./globals.css"
 import { Toaster } from "sonner"
 
+import SessionProvider from "./components/SessionProvider"
+import { getServerSession } from "next-auth"
+
 const onest = Onest({
   subsets: ["latin"],
   display: "swap",
@@ -46,16 +49,20 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession()
+
   return (
     <html lang="en">
       <body className={onest.className}>
-        {children}
-        <Toaster theme="dark" position="top-right" />
+        <SessionProvider session={session}>
+          {children}
+          <Toaster theme="dark" position="top-right" />
+        </SessionProvider>
       </body>
     </html>
   )
